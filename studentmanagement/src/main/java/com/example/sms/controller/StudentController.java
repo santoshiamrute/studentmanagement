@@ -42,7 +42,7 @@ public class StudentController {
 		studentService.saveStudent(student);
 		return "redirect:/students";
 	}
-	
+	  
 	@GetMapping("/students/edit/{id}")
 	public String editStudentForm(@PathVariable Long id, Model model) {
 		model.addAttribute("student", studentService.getStudentById(id));
