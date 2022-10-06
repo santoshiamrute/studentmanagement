@@ -25,7 +25,7 @@ public class Student {
 	private String password;
 	
 	@Column(name = "phoneno")
-	private String phoneno;
+	private String phoneno; 
 	
 		public Student() {
 		
