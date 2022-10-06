@@ -27,8 +27,7 @@ public class Student {
 	@Column(name = "phoneno")
 	private String phoneno;
 	
-	
-	public Student() {
+		public Student() {
 		
 	}
 	
