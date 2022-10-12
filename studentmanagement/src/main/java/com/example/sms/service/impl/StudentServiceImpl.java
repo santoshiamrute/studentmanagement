@@ -4,6 +4,9 @@ package com.example.sms.service.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.sms.entity.Student;
 import com.example.sms.repository.StudentRepository;
@@ -17,8 +20,9 @@ public class StudentServiceImpl implements StudentService{
 	public StudentServiceImpl(StudentRepository studentRepository) {
 		super();
 		this.studentRepository = studentRepository;
-	}
-
+	  }
+	
+    
 	@Override
 	public List<Student> getAllStudents() {
 		return studentRepository.findAll();
@@ -35,7 +39,15 @@ public class StudentServiceImpl implements StudentService{
 	}
 
 	@Override
-	public Student updateStudent(Student student) {
+	public Student updateStudent(Long id,Student student) {
+		
+	Student existingStudent =  studentRepository.findById(id).get();
+		existingStudent.setId(id);
+		existingStudent.setFirstName(student.getFirstName());
+		existingStudent.setEmail(student.getEmail());
+		existingStudent.setPassword(student.getPassword());
+		existingStudent.setPhoneno(student.getPhoneno());
+		
 		return studentRepository.save(student);
 	}
 
@@ -43,5 +55,7 @@ public class StudentServiceImpl implements StudentService{
 	public void deleteStudentById(Long id) {
 		studentRepository.deleteById(id);	
 	}
+
+	 
 
 }

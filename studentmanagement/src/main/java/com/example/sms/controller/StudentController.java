@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.sms.entity.Student;
+import com.example.sms.repository.StudentRepository;
 import com.example.sms.service.StudentService;
 
 @Controller
@@ -29,14 +30,11 @@ public class StudentController {
 	
 	@GetMapping("/students/new")
 	public String createStudentForm(Model model) {
-		
-		// create student object to hold student form data
-		Student student = new Student();
+		 Student student = new Student();
 		model.addAttribute("student", student);
 		return "create_student";
-		
 	}
-	   
+	
 	@PostMapping("/students")
 	public String saveStudent(@ModelAttribute("student") Student student) {
 		studentService.saveStudent(student);
@@ -50,25 +48,12 @@ public class StudentController {
 	}
 
 	@PostMapping("/students/{id}")
-	public String updateStudent(@PathVariable Long id,
-			@ModelAttribute("student") Student student,
-			Model model) {
-		
-		// get student from database by id
-		Student existingStudent = studentService.getStudentById(id);
-		existingStudent.setId(id);
-		existingStudent.setFirstName(student.getFirstName());
-		existingStudent.setEmail(student.getEmail());
-		existingStudent.setPassword(student.getPassword());
-		existingStudent.setPhoneno(student.getPhoneno());
-		
-		// save updated student object
-		studentService.updateStudent(existingStudent);
+	public String updateStudent(@PathVariable Long id,@ModelAttribute("student") Student student,Model model) {
+		studentService.updateStudent(id, student);
 		return "redirect:/students";		
 	}
 	
-	// handler method to handle delete studentrequest
-	
+	 
 	
 	@GetMapping("/students/{id}")
 	public String deleteStudent(@PathVariable Long id) {
