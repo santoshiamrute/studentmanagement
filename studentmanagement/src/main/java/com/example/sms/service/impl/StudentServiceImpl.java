@@ -40,8 +40,7 @@ public class StudentServiceImpl implements StudentService{
 
 	@Override
 	public Student updateStudent(Long id,Student student) {
-		
-	Student existingStudent =  studentRepository.findById(id).get();
+		Student existingStudent =  studentRepository.findById(id).get();
 		existingStudent.setId(id);
 		existingStudent.setFirstName(student.getFirstName());
 		existingStudent.setEmail(student.getEmail());
@@ -49,6 +48,7 @@ public class StudentServiceImpl implements StudentService{
 		existingStudent.setPhoneno(student.getPhoneno());
 		
 		return studentRepository.save(student);
+	
 	}
 
 	@Override

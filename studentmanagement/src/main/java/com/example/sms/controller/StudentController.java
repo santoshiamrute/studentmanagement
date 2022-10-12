@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.sms.entity.Student;
 import com.example.sms.repository.StudentRepository;
 import com.example.sms.service.StudentService;
-
+ 
 @Controller
 public class StudentController {
 	

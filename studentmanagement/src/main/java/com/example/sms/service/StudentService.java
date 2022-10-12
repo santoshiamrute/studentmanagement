@@ -7,9 +7,7 @@ import org.springframework.ui.Model;
 import com.example.sms.entity.Student;
 
 public interface StudentService {
-	
-	 
-	
+		
 	List<Student> getAllStudents();
 	
 	Student saveStudent(Student student);
